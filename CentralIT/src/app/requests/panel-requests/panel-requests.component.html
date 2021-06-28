@@ -1,0 +1,666 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6">
+              <h4 class="card-title">Gestionar solicitudes</h4>
+              <div class="dropdown-divider"></div>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+              <button type="button" class="btn btn-rounded btn-success" style="margin-right: 10px;"
+                (click)="newrequest()" *ngIf="this.userPermissions.allowed(this.permissionsIDs.UPDATE_REQUEST_PERMISSION_ID)">Nuevo</button>
+              <button type="button" class="btn btn-rounded btn-info" (click)="showFilters=!showFilters" ngbTooltip="Filtros">
+                <i class="fas fa-filter"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12" [ngStyle]="{'display': showFilters ? 'block' : 'none'}">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="card-title">Busqueda personalizada</h4>
+                <div class="dropdown-divider"></div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Solicitud</label>
+              <input type="number" class="form-control" (keyup.enter)="search()" [(ngModel)]="requestFilter.request">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Fecha solictud</label>
+            <input type="date" class="form-control" (keyup.enter)="search()" (ngModelChange)="updaterequestdate($event)"
+              [(ngModel)]="requestDate">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Fecha de atención</label>
+              <input type="date" class="form-control" (keyup.enter)="search()" (ngModelChange)="updatedate($event)" [(ngModel)]="attendedDate">
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="this.userPermissions.allowed(this.permissionsIDs.CHECK_ALL_REQUEST)">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label>Atendida por</label>
+              <input type="text" [disabled]="true" (keyup.enter)="search()" class="form-control" [(ngModel)]="requestFilter.userAttended">
+            </div>
+          </div>
+          <div class="col-12 col-sm-1 col-md-1">
+            <button type="button"style="margin-top: 30px" (keyup.enter)="search()" class="btn btn-rounded btn-info" (click)="searchUserAttendedModal()" ngbTooltip="Buscar usuario">
+                <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <label>Solicitada por</label>
+              <input type="text" [disabled]="true" (keyup.enter)="search()" class="form-control" [(ngModel)]="requestFilter.userRequested">
+            </div>
+          </div>
+          <div class="col-12 col-sm-1 col-md-1">
+            <button type="button"style="margin-top: 30px" (keyup.enter)="search()" class="btn btn-rounded btn-info" (click)="searchUserRequestedModal()" ngbTooltip="Buscar usuario">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Servicio asociado</label>
+              <select id="exampleFormControlSelect1" (keyup.enter)="search()" class="form-control" [(ngModel)]="requestFilter.serviceId">
+                <option [value]="-1" style="display: none;">Seleccione...</option>
+                <option *ngFor="let service of serviceList" [value]="service.idService">{{service.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="!this.userPermissions.allowed(this.permissionsIDs.CHECK_MY_REQUEST_AND_MY_DEPARTMENT)">
+            <div class="form-group">
+              <label>Departamento</label>
+              <ng-multiselect-dropdown [placeholder]="'Seleccione...'" [settings]="dropdownSettings" (keyup.enter)="search()"
+                [data]="departmentList" [(ngModel)]="selectedDepartment" (onSelect)="onItemSelectDepartment($event)"
+                (onSelectAll)="onSelectAll($event)">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <!-- <div class="col-md-3">
+            <label>Prioridad</label>
+            <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="requestFilter.priorityId">
+              <option [value]="-1" style="display: none;">Seleccione...</option>
+              <option *ngFor="let priority of prioritiesList" [value]="priority.idPriority">{{priority.name}}</option>
+            </select>
+          </div> -->
+          <!-- <div class="col-md-3">
+            <label>Estatus</label>
+            <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="requestFilter.status">
+              <option [value]="-1">Todos</option>
+              <option [value]="1">Activo</option>
+              <option [value]="0">Inactivo</option>
+            </select>
+          </div> -->
+        </div>
+
+        <div class="row">
+          <div class="col-md-12" style="text-align: right;">
+            <button type="button" class="btn btn-rounded btn-secondary mr-1" style="margin-top: 10px;"
+              (click)="clearFilters()">Limpiar</button>
+            <button type="button" class="btn btn-rounded btn-info" style="margin-top: 10px;"
+              (click)="search()">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="card">
+      <div class="card-body" style="background-color: #d6f3f0; border-top: 10px solid #0a0a92; border-radius: 10px;">
+        <h4 class="card-title">Pediente</h4>
+        <div class="divider-requests"></div>
+        <div *ngFor="let requestPending of requestPendingList">
+          <div class="card">
+            <div class="card-body" style="border-radius: 10px;">
+              <h4 class="card-title"><b>{{requestPending.requestId}}</b><a href="javascript: return false;"
+                  (click)="editRequest(requestPending)"> {{requestPending.service.name}}</a></h4>
+              <div class="divider-requests"></div>
+              <div class="row" style="text-align: center;">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Departamento</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestPending.department.name}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Trabajador</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestPending.nameUserRequested}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Cargo solicitante</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestPending.userRequested.positions.name}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Fecha solictud</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestPending.requestDate | date: 'dd/MM/yyyy'}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="divider-requests"></div>
+              <div class="row">
+                <div class="col-md-6" *ngIf="this.userPermissions.allowed(this.permissionsIDs.ASSIGMENT_REQUEST) && requestPending.nameUserAttended == ''">
+                  <button type="button" class="btn btn-rounded btn-success"
+                    (click)="assingmentAttended(requestPending)" ngbTooltip="Asignarme esta solictud"><i class="fas fa-user-plus"></i></button>
+                </div>
+                <div class="col-md-6" *ngIf="this.userPermissions.allowed(this.permissionsIDs.ASSIGN_USER_REQUEST_ID) && requestPending.nameUserAttended == ''">
+                  <button type="button" class="btn btn-rounded btn-success"
+                    (click)="assingUserAttended(requestPending)" ngbTooltip="Asignar esta solictud"><i class="fas fa-user-plus"></i></button>
+                </div>
+                <div class="col-md-6" *ngIf="requestPending.nameUserAttended != ''">
+                  <small>{{requestPending.nameUserAttended}}</small>
+                </div>
+                <div class="col-md-6" style="text-align: right;" *ngIf="requestPending.nameUserAttended != ''">
+                  <button class="btn btn-primary" (click)="ProcessRequest(requestPending)" ngbTooltip="Procesar" *ngIf="this.userPermissions.allowed(this.permissionsIDs.CHECK_ALL_REQUEST) || requestPending.userAttendedId == userId">
+                    <i class="fas fa-angle-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="collectionSizeRP > 0">
+          <div class="col-md-12" style="text-align: center;">
+            <ngb-pagination class="pag" [collectionSize]="collectionSizeRP" [(page)]="pageRP" [pageSize]="pageSizeRP" (pageChange)="refreshRequestPending()">
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="card">
+      <div class="card-body" style="background-color: #d6f3f0; border-top: 10px solid #5abbbb; border-radius: 10px;">
+        <h4 class="card-title">En progreso</h4>
+        <div class="divider-requests"></div>
+        <div *ngFor="let requestInProgress of requestInProgressList">
+          <div class="card">
+            <div class="card-body" style="border-radius: 5px;">
+              <h4 class="card-title"><b>{{requestInProgress.requestId}}</b><a href="javascript: return false;"
+                  (click)="editRequest(requestInProgress)"> {{requestInProgress.service.name}}</a></h4>
+              <div class="divider-requests"></div>
+              <div class="row" style="text-align: center;">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Departamento</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestInProgress.department.name}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Trabajador</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestInProgress.nameUserRequested}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Fecha solictud</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestInProgress.requestDate | date: 'dd/MM/yyyy'}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Fecha atención</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestInProgress.attendedDate | date: 'dd/MM/yyyy'}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="divider-requests"></div>
+              <div class="row">
+                <div class="col-md-6" *ngIf="requestInProgress.nameUserAttended != ''">
+                  <small>{{requestInProgress.nameUserAttended}}</small>
+                </div>
+                <div class="col-md-6" style="text-align: right;" *ngIf="this.userPermissions.allowed(this.permissionsIDs.CHECK_ALL_REQUEST) || requestInProgress.userAttendedId == userId">
+                  <button type="button" class="btn btn-danger mr-1" (click)="BackPending(requestInProgress)"><i
+                      class="fas fa-angle-left"></i></button>
+                  <button class="btn btn-primary" (click)="ToFinalizeRequest(requestInProgress)"><i
+                      class="fas fa-angle-right" ngbTooltip="Terminar"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="collectionSizeRIP > 0">
+          <div class="col-md-12" style="text-align: center;">
+            <ngb-pagination class="pag" [collectionSize]="collectionSizeRIP" [(page)]="pageRIP" [pageSize]="pageSizeRIP" (pageChange)="refreshRequestInProgress()">
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="card">
+      <div class="card-body" style="background-color: #d6f3f0; border-top: 10px solid #e0ad1e; border-radius: 10px;">
+        <h4 class="card-title">Por confirmar</h4>
+        <div class="divider-requests"></div>
+        <div *ngFor="let requestToFinalize of requestToFinalizeList">
+          <div class="card">
+            <div class="card-body" style="border-radius: 5px;">
+              <h4 class="card-title"><b>{{requestToFinalize.requestId}}</b><a href="javascript: return false;"
+                  (click)="editRequest(requestToFinalize)"> {{requestToFinalize.service.name}}</a></h4>
+              <div class="divider-requests"></div>
+              <div class="row" style="text-align: center;">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Departamento</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestToFinalize.department.name}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Trabajador</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestToFinalize.nameUserRequested}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Fecha solictud</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestToFinalize.requestDate | date: 'dd/MM/yyyy'}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Fecha atención</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestToFinalize.attendedDate | date: 'dd/MM/yyyy'}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="divider-requests"></div>
+              <div class="row">
+                <div class="col-md-6" *ngIf="requestToFinalize.nameUserAttended != ''">
+                  <small>{{requestToFinalize.nameUserAttended}}</small>
+                </div>
+                <div class="col-md-6" style="text-align: right;" *ngIf="this.userPermissions.allowed(this.permissionsIDs.CONFIRM_REQUEST)">
+                  <button type="button" class="btn btn-danger mr-1" (click)="BackInProgress(requestToFinalize)"><i
+                      class="fas fa-angle-left"></i></button>
+                  <button class="btn btn-primary" (click)="FinishRequest(requestToFinalize)"><i
+                      class="fas fa-angle-right" ngbTooltip="Confirmar"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="collectionSizeRTP > 0">
+          <div class="col-md-12" style="text-align: center;">
+            <ngb-pagination class="pag" [collectionSize]="collectionSizeRTP" [(page)]="pageRTP" [pageSize]="pageSizeRTP" (pageChange)="refreshRequestToFinalize()">
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 img-responsive">
+    <div class="card">
+      <div class="card-body" style="background-color: #d6f3f0; border-top: 10px solid #07967e; border-radius: 10px;">
+        <h4 class="card-title">Finalizada</h4>
+        <div class="divider-requests"></div>
+        <div *ngFor="let requestFinished of requestFinishedList">
+          <div class="card">
+            <div class="card-body" style="border-radius: 5px;">
+              <h4 class="card-title"><b>{{requestFinished.requestId}}</b><a href="javascript: return false;"
+                  (click)="editRequest(requestFinished)"> {{requestFinished.service.name}}</a></h4>
+              <div class="divider-requests"></div>
+              <div class="row" style="text-align: center;">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Departamento</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestFinished.department.name}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Trabajador</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestFinished.nameUserRequested}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Fecha solictud</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestFinished.requestDate | date: 'dd/MM/yyyy'}}</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small style="font-weight: bold;">Fecha finalización</small>
+                    </div>
+                    <div class="col-md-12">
+                      <small class="">{{requestFinished.finishDate | date: 'dd/MM/yyyy'}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="divider-requests"></div>
+              <div class="row">
+                <div class="col-md-6" *ngIf="requestFinished.nameUserAttended != ''">
+                  <small>{{requestFinished.nameUserAttended}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="collectionSizeRF > 0">
+          <div class="col-md-12" style="text-align: center;">
+            <ngb-pagination class="pag" [collectionSize]="collectionSizeRF" [(page)]="pageRF" [pageSize]="pageSizeRF" (pageChange)="refreshRequestFinish()">
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h5>Solicitudes anuladas</h5>
+        <div class="dropdown-divider"></div>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Solicitud</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Solicitante</th>
+            <th scope="col">Cargo solicitante</th>
+            <th scope="col">Observación</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let request of requestCanceledList">
+            <td><b>{{request.requestId}}</b> {{request.service.name}}</td>
+            <td>{{request.department.name}}</td>
+            <td>{{request.nameUserRequested}}</td>
+            <td>{{request.userRequested.positions.name}}</td>
+            <td>{{request.observation}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSizeRC" [(page)]="pageRC" [pageSize]="pageSizeRC" (pageChange)="refreshCanceled()">
+          </ngb-pagination>
+        
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSizeRC" (ngModelChange)="refreshCanceled()">
+            <option [ngValue]="5">5 registros por página</option>
+            <option [ngValue]="10">10 registros por página</option>
+            <option [ngValue]="15">15 registros por página</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #modalUserAssing let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Buscar usuario</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Correo <span class="text-danger">*</span></label>
+          <input type="text" (keyup.enter)="searchUser()" class="form-control" [(ngModel)]="userSearch.email">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Cédula <span class="text-danger">*</span></label>
+          <input type="text" (keyup.enter)="searchUser()" class="form-control" [(ngModel)]="userSearch.identityCard">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nombre <span class="text-danger">*</span></label>
+          <input type="text" (keyup.enter)="searchUser()" class="form-control" [(ngModel)]="userSearch.name">
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <label>Departamento <span class="text-danger">*</span></label>
+          <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="userSearch.departmentId">
+            <option [value]="-1" style="display: none;">Seleccione...</option>
+            <option *ngFor="let department of listdepartments" [value]="department.idDepartment">{{department.name}}</option>
+        </select>
+        </div>
+      </div>
+      <div class="col-12 col-sm-1 col-md-1">
+        <button type="button" style="margin-top: 30px;" class="btn btn-rounded btn-info" (click)="searchUser()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div class="col-md-12 col-lg-12">
+        <small class="text-danger">(*) Ingrese
+          por lo menos un filtro</small>
+      </div>
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Correo</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Cédula</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of userListSearch">
+              <td>{{user.email}}</td>
+              <td>{{user.firstName + " " + user.firstLastName}}</td>
+              <td>{{user.identityCard}}</td>
+              <td><button type="button" class="btn btn-rounded btn-success" (click)="acceptUser(user)"><i class="fas fa-check"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSizeRU" [(page)]="pageRU" [pageSize]="pageSizeRU" (pageChange)="refreshUsers()">
+          </ngb-pagination>
+        
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSizeRU" (ngModelChange)="refreshUsers()">
+            <option [ngValue]="5">5 registros por página</option>
+            <option [ngValue]="10">10 registros por página</option>
+            <option [ngValue]="15">15 registros por página</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #modalDetailRequest let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><b>{{_requestDetail.requestId}}</b> {{_requestDetail.service.name}}
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12 row" style="margin-bottom: 10px;">
+        <div class="col-md-12 form-group">
+          <b style="font-weight: bold; color: #009efb;">Usuario que solicita</b>
+          <div class="divider-requests"></div>
+        </div>
+        <div class="col-md-6 form-group">
+          <label><b style="font-weight: bold;">Nombre:</b> {{_requestDetail.nameUserRequestedInitial}}</label>
+        </div>
+        <div class="col-md-6 form-group">
+          <label><b style="font-weight: bold;">Teléfono:</b> {{_requestDetail.phoneUserRequestedInitial}}</label>
+        </div>
+      </div>
+      <div class="col-md-12 row" style="margin-bottom: 10px;">
+        <div class="col-md-12 form-group">
+          <b style="font-weight: bold; color: #009efb;">Datos del trabajador</b>
+          <div class="divider-requests"></div>
+        </div>
+        <div class="col-md-6 form-group">
+          <label><b style="font-weight: bold;">Nombre:</b> {{_requestDetail.userRequestedId.firstName}}</label>
+        </div>
+        <div class="col-md-6 form-group">
+          <label><b style="font-weight: bold;">Departamento:</b> {{_requestDetail.userRequestedId.departments.name}}</label>
+        </div>
+        <div class="col-md-6 form-group">
+          <label><b style="font-weight: bold;">Cargo:</b> {{_requestDetail.userRequestedId.positions.name}}</label>
+        </div>
+        <div class="col-md-6 form-group">
+          <label><b style="font-weight: bold;">Teléfono:</b> {{_requestDetail.userRequestedId.mainPhone}}</label>
+        </div>
+        <div class="col-md-12 form-group">
+          <label><b style="font-weight: bold;">Correo:</b> {{_requestDetail.userRequestedId.email}}</label>
+        </div>
+      </div>
+      <div class="col-md-12 row" style="margin-bottom: 10px;" *ngIf="_requestDetail.userAttendedId.firstName != ''">
+        <div class="col-md-12 form-group">
+          <b style="font-weight: bold; color: #009efb;">Usuario que atiende</b>
+          <div class="divider-requests"></div>
+        </div>
+        <div class="col-md-6 form-group">
+          <label><b style="font-weight: bold;">Nombre:</b> {{_requestDetail.userAttendedId.firstName}}</label>
+        </div>
+        <div class="col-md-6 form-group">
+          <label><b style="font-weight: bold;">Departamento:</b> {{_requestDetail.userAttendedId.departments.name}}</label>
+        </div>
+        <div class="col-md-6 form-group">
+          <label><b style="font-weight: bold;">Cargo:</b> {{_requestDetail.userAttendedId.positions.name}}</label>
+        </div>
+        <div class="col-md-6 form-group">
+          <label><b style="font-weight: bold;">Teléfono:</b> {{_requestDetail.userAttendedId.mainPhone}}</label>
+        </div>
+        
+      </div>
+      <div class="col-md-12">
+        <div class="divider-requests"></div>
+      </div>
+      <div class="col-md-6">
+        
+        <div class="form-group">
+          <label><b style="font-weight: bold;">Departamento:</b> {{_requestDetail.department}}</label>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label><b style="font-weight: bold;">Motivo:</b> {{_requestDetail.reason}}</label>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label><b style="font-weight: bold;">Observación:</b> {{_requestDetail.observation}}</label>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label><b style="font-weight: bold;">Descripción:</b> {{_requestDetail.service.description}}</label>
+
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Servicio</label>
+          <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="_requestDetail.service.idService"
+            [disabled]="_requestDetail.requestStatus.idStatus != 2">
+            <option [value]="-1" style="display: none;">Seleccione...</option>
+            <option *ngFor="let service of serviceList" [value]="service.idService"
+              [selected]="service.idService === _requestDetail.service.idService">{{service.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div [class]="(this.userPermissions.allowed(this.permissionsIDs.CHECK_ALL_REQUEST)) && (_requestDetail.requestStatus.idStatus == 2 || _requestDetail.requestStatus.idStatus == 1)  ? 'col-md-10' : 'col-md-12'">
+        <div class="form-group">
+          <label>Usuario que atiende</label>
+          <input type="text" class="form-control" [disabled]="true"
+            [(ngModel)]="_requestDetail.userAttendedId.firstName">
+        </div>
+      </div>
+      <div class="col-2 col-sm-2" *ngIf="(this.userPermissions.allowed(this.permissionsIDs.CHECK_ALL_REQUEST)) && (_requestDetail.requestStatus.idStatus == 2 || _requestDetail.requestStatus.idStatus == 1)">
+        <button style="margin-top: 30px;" type="button" class="btn btn-rounded btn-info" (click)="reAssignUser(_requestDetail)"
+          [disabled]="_requestDetail.requestStatus.idStatus != 2">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-rounded btn-danger" *ngIf="(this.userPermissions.allowed(this.permissionsIDs.CHECK_ALL_REQUEST)) && (_requestDetail.requestStatus.idStatus == 2 || _requestDetail.requestStatus.idStatus == 1)" (click)="CancelRequest(_requestDetail)">Anular</button>
+    <button type="button" class="btn btn-rounded btn-success" (click)="saveRequest(_requestDetail)">Guardar</button>
+  </div>
+</ng-template>
+
+<ng-template #modalConfirmFinish let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmación
+      </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p><strong>¿Desea finalizar esta solictud?</strong></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">No</button>
+        <button type="button" class="btn btn-danger" (click)="FinishConfrimRequest()">Si</button>
+    </div>
+  </ng-template>
+
+  <ng-template #modalConfirmCancel let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Anular solicitud
+      </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Observación</label>
+            <textarea class="form-control" style="resize: none;" cols="5" rows="5" [(ngModel)]="_requestCancel.observation"></textarea>
+            <small class="text-danger" *ngIf="submittedCancel && _requestCancel.observation.trim() == ''">Ingrese una Observación</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="ConfirmCancelRequest()">Guardar</button>
+    </div>
+  </ng-template>

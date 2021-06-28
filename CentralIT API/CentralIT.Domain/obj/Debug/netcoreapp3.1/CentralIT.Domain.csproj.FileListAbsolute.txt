@@ -1,0 +1,27 @@
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Domain\bin\Debug\netcoreapp3.1\CentralIT.Domain.deps.json
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Domain\bin\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Domain\bin\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.csprojAssemblyReference.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.AssemblyInfoInputs.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.AssemblyInfo.cs
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.csproj.CoreCompileInputs.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\bin\Debug\netcoreapp3.1\CentralIT.Domain.deps.json
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\bin\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\bin\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.csprojAssemblyReference.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.AssemblyInfoInputs.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.AssemblyInfo.cs
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.csproj.CoreCompileInputs.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\bin\Debug\netcoreapp3.1\CentralIT.Domain.deps.json
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\bin\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\bin\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.csprojAssemblyReference.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.AssemblyInfoInputs.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.AssemblyInfo.cs
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.csproj.CoreCompileInputs.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Domain\obj\Debug\netcoreapp3.1\CentralIT.Domain.pdb

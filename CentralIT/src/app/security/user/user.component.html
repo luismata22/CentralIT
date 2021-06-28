@@ -1,0 +1,188 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="card-title">Busqueda personalizada</h4>
+                <div class="dropdown-divider"></div>
+              </div>
+              <ng-template #modalAssignRole let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Asignar rol</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Nombre usuario</label>
+                        <input type="text" [disabled]="true" class="form-control" (keyup.enter)="saveRoleUser()"
+                          value="{{_userAsssignRole.firstName + ' ' + _userAsssignRole.firstLastName}}">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <label>Cambiar rol</label>
+                      <select id="exampleFormControlSelect1" class="form-control" (keyup.enter)="saveRoleUser()"
+                        [(ngModel)]="_userAsssignRole.roles.idRole">
+                        <option *ngFor="let role of roleList" value="{{role.idRole}}"
+                          [selected]="role.idRole === _userAsssignRole.roles.idRole">{{role.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-rounded btn-success" (click)="saveRoleUser()">Guardar</button>
+                </div>
+              </ng-template>
+              <div class="col-md-6" style="text-align: right;">
+                <button type="button" class="btn btn-rounded btn-success"
+                  *ngIf="this.userPermissions.allowed(this.permissionsIDs.UPDATE_USER_PERMISSION_ID)"
+                  (click)="newuser()">Nuevo</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 form-group">
+            <label>Correo electrónico</label>
+            <input type="text" class="form-control" (keyup.enter)="search()" [(ngModel)]="userFilter.email">
+          </div>
+          <div class="col-md-4 form-group">
+            <label>Cédula</label>
+            <input type="text" class="form-control" (keyup.enter)="search()" [(ngModel)]="userFilter.identityCard">
+          </div>
+          <div class="col-md-4 form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" (keyup.enter)="search()" [(ngModel)]="userFilter.name">
+          </div>
+          <div class="col-md-4 form-group">
+            <label>Departamento</label>
+            <select id="exampleFormControlSelect1" (keyup.enter)="search()" class="form-control" [(ngModel)]="userFilter.departmentId">
+              <option [value]="-1" style="display: none;">Seleccione...</option>
+              <option *ngFor="let department of departmentsList" value="{{department.idDepartment}}">{{department.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-4 form-group">
+            <label>Cargo</label>
+            <select id="exampleFormControlSelect1" (keyup.enter)="search()" class="form-control" [(ngModel)]="userFilter.positionId">
+              <option [value]="-1" style="display: none;">Seleccione...</option>
+              <option *ngFor="let position of positionList" value="{{position.idPosition}}">{{position.name}}</option>
+            </select>
+          </div>
+          <div class="col-md-4 form-group">
+            <label>Estatus</label>
+            <select id="exampleFormControlSelect1" (keyup.enter)="search()" class="form-control" [(ngModel)]="userFilter.status">
+              <option [value]="-1">Todos</option>
+              <option [value]="1">Activo</option>
+              <option [value]="0">Inactivo</option>
+            </select>
+          </div>
+          <div class="col-md-12" style="text-align: right;">
+            <button type="button" class="btn btn-rounded btn-secondary mr-1" style="margin-top: 10px;"
+              (click)="clearFilters()">Limpiar</button>
+            <button type="button" class="btn btn-rounded btn-info" style="margin-top: 10px;"
+              (click)="search()">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Usuarios</h4>
+        <div class="dropdown-divider"></div>
+        
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Correo eléctronico</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Cédula</th>
+              <th scope="col">Departamento</th>
+              <th scope="col">Cargo</th>
+              <th scope="col">Rol</th>
+              <th scope="col">Estatus</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of userList">
+              <td>
+                <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
+                <!-- <ngb-highlight [result]="country.name" [term]="filter.value"></ngb-highlight> -->
+                {{user.email}}
+              </td>
+              <td>
+                <!-- <ngb-highlight [result]="country.area | number" [term]="filter.value"></ngb-highlight> -->{{user.firstName + " " + user.firstLastName}}
+              </td>
+              <td>{{user.identityCard}}</td>
+              <td>{{user.departments.name}}</td>
+              <td>{{user.positions.name}}</td>
+              <td>{{user.roles.name}}</td>
+              <td>{{user.status == true ? 'Activo' : 'Inactivo'}}</td>
+              <td>
+                <button type="button" class="btn btn-rounded btn-success"
+                  *ngIf="this.userPermissions.allowed(this.permissionsIDs.ASSIGN_PASSWORD_ID)" style="margin-right: 5px;"
+                  (click)="changePassword(user)" ngbTooltip="Asignar contraseña"><i class="fas fa-key"></i></button>
+                <button type="button" class="btn btn-rounded btn-success"
+                  *ngIf="this.userPermissions.allowed(this.permissionsIDs.ASSIGN_ROLE_ID)"
+                  style="margin-right: 5px;"
+                  (click)="assingRole(user.userId, user.firstName, user.firstLastName, user.roles.idRole)" ngbTooltip="Cambiar rol"><i
+                  class="fas fa-user-md"></i>
+                </button>
+                <button type="button" class="btn btn-rounded btn-success"
+                  *ngIf="this.userPermissions.allowed(this.permissionsIDs.UPDATE_USER_PERMISSION_ID)"
+                  (click)="editUser(user.userId)" ngbTooltip="Editar"><i class="fas fa-edit"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+            (pageChange)="refreshUsers()">
+          </ngb-pagination>
+
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshUsers()">
+            <option [ngValue]="5">5 registros por página</option>
+            <option [ngValue]="10">10 registros por página</option>
+            <option [ngValue]="15">15 registros por página</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #modalChangePassword let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Cambiar contraseña</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Nombre usuario</label>
+          <input type="text" [disabled]="true" class="form-control" (keyup.enter)="saveNewPassword()"
+            value="{{_userChangePassword.firstName + ' ' + _userChangePassword.firstLastName}}">
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label>Contraseña</label>
+        <input type="password" class="form-control" (keyup.enter)="saveNewPassword()" [(ngModel)]="_userChangePassword.password">
+        <small class="text-danger" *ngIf="submittedPassword && _userChangePassword.password.trim() == ''">La contraseña
+          es requerida</small>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-rounded btn-success" (click)="saveNewPassword()">Guardar</button>
+  </div>
+</ng-template>

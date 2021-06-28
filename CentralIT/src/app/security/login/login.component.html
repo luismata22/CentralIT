@@ -1,0 +1,89 @@
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background: url(assets/images/background/login-register.jpg) no-repeat center center; background-size: cover;">
+  <div class="auth-box m-3 m-md-0" style="border-radius: 20px;">
+    <div id="loginform" ng-reflect-ng-class="[object Object]" [ngStyle]="{'display' : !showForgotPwt ? 'block' : 'none'}">
+      <div class="logo">
+        <span class="db">
+          <img src="assets/images/login-icon.png" alt="logo" style="width: 150px;" class="m-b-20"></span>
+          <h5 class="font-medium">Inicio de sesión</h5>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-horizontal m-t-20">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span id="basic-addon1" class="input-group-text">
+                    <i class="ti-user"></i>
+                  </span>
+                </div>
+                <input type="email"  pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" placeholder="correo@electronico.com" aria-label="Username" formControlName="email" aria-describedby="basic-addon1" class="form-control" required>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span id="basic-addon2" class="input-group-text">
+                    <i class="ti-pencil"></i>
+                  </span>
+                </div>
+                <input type="password" placeholder="Contraseña" aria-label="Password" formControlName="password" aria-describedby="basic-addon1" class="form-control" required>
+              </div>
+              <div class="form-group row">
+                <!-- <div class="col-md-12">
+                  <div class="custom-control custom-checkbox d-flex">
+                    <input type="checkbox" formControName="rememberMe" id="customCheck1" class="custom-control-input" (onChange)="onChangeRememberMe()">
+                    <label for="customCheck1" class="custom-control-label font-14">Recordarme</label>
+                    
+                  </div>
+                </div> -->
+                <!-- <div class="col-md-12" style="text-align: right;">
+                  <a href="javascript:void(0)" id="to-recover" class="text-dark font-14 ml-auto" (click)="fortgotPassword()">
+                    <i class="fa fa-lock m-r-5"></i> 
+                    Olvidó su contraseña?
+                  </a>
+                </div> -->
+              </div>
+              <div class="form-group text-center">
+                <div class="col-xs-12 p-b-20">
+                  <button [disabled]="!loginForm.valid" type="submit" class="btn btn-block btn-rounded btn-lg btn-info">Acceder</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="recoverform" ng-reflect-ng-class="[object Object]" [ngStyle]="{'display' : showForgotPwt ? 'block' : 'none' }">
+        <div class="logo">
+          <span class="db">
+            <img src="assets/images/logo-icon.png" alt="logo" style="width: 50px;">
+          </span>
+          <h5 class="font-medium m-b-20">Recuperar contraseña</h5>
+          <span>Ingrese su correo electrónico y se le enviarán instrucciones</span>
+        </div>
+        <div class="row m-t-20">
+          <form class="col-12">
+            <div class="form-group row">
+              <div class="col-12">
+                <input type="email" required="" placeholder="Correo electrónico" class="form-control form-control-lg">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-12">
+                <div class="custom-control custom-checkbox d-flex">
+                  <!-- <input type="checkbox" id="customCheck1" class="custom-control-input">
+                  <label for="customCheck1" class="custom-control-label font-14">Remember me</label> -->
+                  <a href="javascript:void(0)" id="to-recover" class="text-dark font-14 ml-auto" (click)="BackLogIn()">
+                    <i class="fas fa-arrow-alt-circle-left"></i> 
+                    Iniciar sesión
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="row m-t-20">
+              <div class="col-12">
+                <button type="submit" name="action" class="btn btn-block btn-lg btn-danger">Enviar</button>
+                
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

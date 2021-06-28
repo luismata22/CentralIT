@@ -1,0 +1,158 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+                    <div class="col-md-12">
+                        <h3 class="card-title"><b>{{idUser == -1 ? "Nuevo usuario" : "Modificar usuario"}}</b></h3>
+                        <div class="divider-requests"></div>
+                        <br>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="card-title"><b>Datos básicos</b></h4>
+                        <div class="divider-requests"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <!-- <div class="col-md-2">
+                                        <select id="exampleFormControlSelect1" class="form-control" style="position: absolute; bottom: 0;" [(ngModel)]="_user.entityTypeId">
+                                            <option *ngFor="let documentType of documentTypeList" [value]="documentType.idDocumentType" [selected]="documentType.idDocumentType === _user.entityTypeId">{{documentType.identifier}}</option>
+                                          </select>
+                                    </div> -->
+                                    <div class="col-md-10">
+                                        <label>Cédula <span class="text-danger">*</span></label>
+                                        <input type="text" mask="S-00000000" placeholder="V-00000000" class="form-control" [(ngModel)]="_user.identityCard">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-check form-check-inline" style="position: absolute; right: 0; bottom: 0;">
+                                            <input _ngcontent-kad-c259="" [disabled]="idUser <= 0" type="checkbox" [(ngModel)]="_user.status" id="inlineCheckbox2" value="option2" class="form-check-input">
+                                            <label _ngcontent-kad-c259="" for="inlineCheckbox2" class="form-check-label">Activo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <small class="text-danger" *ngIf="submitted && _user.identityCard.trim() == ''">La cédula es requerida</small>
+                            </div>
+                            
+                            <div class="col-md-12 form-group">
+                                <label>Primer nombre <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="_user.firstName">
+                                <small class="text-danger" *ngIf="submitted && _user.firstName.trim() == ''">El primer nombre es requerido</small>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Segundo nombre </label>
+                                <input type="text" class="form-control" [(ngModel)]="_user.secondName">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Primer apellido <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="_user.firstLastName">
+                                <small class="text-danger" *ngIf="submitted && _user.firstName.trim() == ''">El primer apellido es requerido</small>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Segundo apellido </label>
+                                <input type="text" class="form-control" [(ngModel)]="_user.secondLastName">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="card-title"><b>Departamento</b> <span class="text-danger">*</span></h4>
+                        <div class="divider-requests"></div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <ng-multiselect-dropdown
+                                    [placeholder]="'Seleccione...'"
+                                    [settings]="dropdownSettings"
+                                    [data]="departmentList"
+                                    [(ngModel)]="selectedDepartment"
+                                    (onSelect)="onItemSelectDepartment($event)"
+                                    (onSelectAll)="onSelectAll($event)"
+                                    (onDeSelect)="onItemNotSelected()">
+                                </ng-multiselect-dropdown>
+                                <!-- <select id="exampleFormControlSelect1" class="form-control" placeholder="Seleccione..." [(ngModel)]="_user.departmentId" (change)="chargePosition(_user.departmentId)">
+                                    <option [value]="-1" style="display: none;" selected>Seleccione...</option>
+                                    <option *ngFor="let department of departmentsList" [ngValue]="department.idDepartment">{{department.name}}</option>
+                                  </select> -->
+                                  <small class="text-danger" *ngIf="submitted && _user.departments.idDepartment<=0">El departamento es requerido</small>
+                            </div>
+                        </div>
+                        <div class="divider-requests"></div>
+                        <h4 class="card-title"><b>Cargo</b> <span class="text-danger">*</span></h4>
+                        <div class="divider-requests"></div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <ng-multiselect-dropdown
+                                    [placeholder]="'Seleccione...'"
+                                    [settings]="dropdownSettings"
+                                    [data]="positionList"
+                                    [(ngModel)]="selectedPosition"
+                                    (onSelect)="onItemSelectPosition($event)"
+                                    (onSelectAll)="onSelectAll($event)">
+                                </ng-multiselect-dropdown>
+                                <!-- <select id="exampleFormControlSelect1" class="form-control" placeholder="Seleccione..." [(ngModel)]="_user.positionDepartmentId">
+                                    <option [value]="-1" style="display: none;" selected>Seleccione...</option>
+                                    <option *ngFor="let position of positionList" [ngValue]="position.idPositionDepartment" [selected]="position.idPosition === _user.positions.idPosition">{{position.name}}</option>
+                                  </select> -->
+                                  <small class="text-danger" *ngIf="submitted && _user.positionDepartmentId <= 0">El cargo es requerido</small>
+                            </div>
+                        </div>
+                        <!-- <div class="divider-requests"></div>
+                        <h4 class="card-title">Información complementaria</h4>
+                        <div class="divider-requests"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Dominio</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-md-12">
+                                <label>LDAP <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div> -->
+                        <div class="divider-requests"></div>
+                        <h4 class="card-title"><b>Contacto</b></h4>
+                        <div class="divider-requests"></div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>Teléfono principal <span class="text-danger">*</span></label>
+                                <input type="text" mask="(0000) 000 0000" placeholder="(0000) 000 0000" class="form-control" [(ngModel)]="_user.mainPhone">
+                                <small class="text-danger" *ngIf="submitted && _user.mainPhone.trim() == ''">El teléfono principal es requerido</small>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Teléfono secundario</label>
+                                <input type="text" mask="(0000) 000 0000" placeholder="(0000) 000 0000" class="form-control" [(ngModel)]="_user.secondaryPhone">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-12">
+                        <div class="divider-requests"></div>
+                        <h4 class="card-title"><b>Datos de seguridad</b></h4>
+                        <div class="divider-requests"></div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Correo eléctronico <span class="text-danger">*</span></label>
+                                <input type="email" autocomplete="new-password" (keypress)="keyPressEmail($event);" class="form-control" [(ngModel)]="_user.email">
+                                <small class="text-danger" *ngIf="submitted && _user.email.trim() == ''">El correo eléctronico es requerido</small>
+                                <small class="text-danger" *ngIf="invalidemail">Correo electrónico inválido</small>
+                            </div>
+                            <div class="col-md-6 form-group" *ngIf="_user.userId <= 0">
+                                <label>Contraseña <span class="text-danger">*</span></label>
+                                <input type="password" autocomplete="new-password" class="form-control" [(ngModel)]="_user.password">
+                                <small class="text-danger" *ngIf="submitted && _user.password.trim() == ''">La contraseña es requerida</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="text-danger">(*) Campos obligatorios</label>
+                    </div>
+                    <div class="col-md-12" style="text-align: center;">
+                        <button type="button" class="btn btn-rounded btn-secondary mr-1" style="margin-top: 10px;" (click)="backUserList()">Cancelar</button>
+                        <button type="button" class="btn btn-rounded btn-info" style="margin-top: 10px;" (click)="saveUser()">Guardar</button>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>

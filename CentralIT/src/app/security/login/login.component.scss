@@ -1,0 +1,31 @@
+.auth-wrapper .auth-box {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 1px 0px 20px rgb(0 0 0 / 8%);
+    max-width: 400px;
+}
+
+@media (min-width: 768px){
+.m-md-0 {
+    margin: 0 !important;
+}
+}
+
+.auth-wrapper {
+    min-height: 100vh;
+    position: relative;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+.justify-content-center {
+    justify-content: center !important;
+}
+.d-flex {
+    display: flex !important;
+}
+
+.auth-wrapper .auth-box .logo {
+    text-align: center;
+}

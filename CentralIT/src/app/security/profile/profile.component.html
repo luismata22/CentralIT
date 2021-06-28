@@ -1,0 +1,163 @@
+<div _ngcontent-idx-c131="" class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 col-xlg-3 col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="m-t-30 text-center">
+            <div class="container">
+              <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                              
+                      <!-- <div class="form-group">
+                          <input #file type="file" name="image" (change)="fileProgress($event)" />
+                      </div>
+                      <div *ngIf="fileUploadProgress">
+                          Upload progress: {{ fileUploadProgress }}
+                      </div>
+                      <div class="image-preview mb-3" *ngIf="previewUrl">
+                          <img [src]="previewUrl" height="300" />                 
+                      </div>
+           
+                      <div class="mb-3" *ngIf="uploadedFilePath">
+                          {{uploadedFilePath}}
+                      </div>
+                       
+                      <div class="form-group">
+                          <button class="btn btn-primary">Submit</button>
+                      </div> -->
+                  </div>
+              </div>
+          </div>
+            <img [src]="previewUrl" width="150" class="rounded-circle">
+            <form [formGroup]="uploadForm">      
+              <div>
+                <input type="file" accept=".jpg" name="profile" *ngIf="editprofile==true" (change)="onFileSelect($event)" />
+              </div>
+              <div>
+                <small class="text-danger" *ngIf="editprofile==true">Relacion de aspecto 1:1, máximo 1MB</small>
+              </div>
+              <!-- <div>
+                <button type="submit" class="btn btn-primary">Subir</button>
+              </div> -->
+            </form>
+            <div style="border: 1px solid; margin-top: 10px;">
+              <h4 class="card-title m-t-10">{{user.firstName + ' ' + user.firstLastName}}</h4>
+              <h6 class="card-subtitle"><strong>Departamento: </strong>{{user.departments.name}}</h6>
+              <h6 class="card-subtitle"><strong>Cargo: </strong>{{user.positions.name}}</h6>
+            </div>
+            
+            <!-- <div class="row text-center justify-content-md-center">
+                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people m-r-10"></i> 254 </a>
+                </div>
+                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture m-r-10"></i> 54 </a>
+                </div>
+              </div> -->
+          </div>
+        </div>
+        <div>
+          <hr>
+        </div>
+        <div class="card-body"><label class="text-muted">Correo electrónico </label>
+          <h4>{{user.email}}</h4><label class="text-muted p-t-30 db">Teléfono principal</label>
+          <h4>{{user.mainPhone}}</h4><label class="text-muted p-t-30 db">Teléfono secundario</label>
+          <h4>{{user.secondaryPhone == "" || user.secondaryPhone == null ? "No posee" : user.secondaryPhone}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 col-sm-12" style="text-align: right;">
+              <button class="btn btn-rounded btn-success" style="margin-bottom: 10px; margin-right: 10px;"(click)="showModalChangePassword()">Cambiar contraseña</button>
+              <button class="btn btn-rounded btn-success" style="margin-bottom: 10px;" *ngIf="editprofile==false" (click)="editprofile=!editprofile">Editar perfil</button>
+            </div>
+          </div>
+            <div class="row">
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Nombre <span class="text-danger" *ngIf="editprofile==true">*</span></label>
+                  <input type="text" [(ngModel)]="user.firstName" [disabled]="editprofile==false" class="form-control form-control-line">
+                  <small class="text-danger" *ngIf="submittedUser && user.firstName.trim() == ''">El nombre es requerido</small>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Apellido <span class="text-danger" *ngIf="editprofile==true">*</span></label>
+                  <input type="text" [(ngModel)]="user.firstLastName" [disabled]="editprofile==false" class="form-control form-control-line">
+                  <small class="text-danger" *ngIf="submittedUser && user.firstLastName.trim() == ''">El apellido es requerido</small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Teléfono principal <span class="text-danger" *ngIf="editprofile==true">*</span></label>
+                  <input type="text" [(ngModel)]="user.mainPhone" [disabled]="editprofile==false" class="form-control form-control-line">
+                  <small class="text-danger" *ngIf="submittedUser && user.mainPhone.trim() == ''">El teléfono principal es requerido</small>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Teléfono secundario</label>
+                  <input type="text" [(ngModel)]="user.secondaryPhone" [disabled]="editprofile==false" class="form-control form-control-line">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12" style="text-align: right;">
+                <button class="btn btn-rounded btn-secondary" style="margin-top: 10px;margin-right: 10px;" *ngIf="editprofile==true" (click)="editprofile=!editprofile">Cancelar</button>
+                <button class="btn btn-rounded btn-success" style="margin-top: 10px;" *ngIf="editprofile==true" (click)="saveUser()">Guardar</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #modalChangePassword let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Cambiar contraseña</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Nombre usuario</label>
+                    <input type="text" [disabled]="true" class="form-control" value="{{user.firstName + ' ' + user.firstLastName}}">
+                </div>
+            </div>
+            <div class="col-md-12">
+              <label>Contraseña actual <span class="text-danger">*</span></label>
+              <input type="password" class="form-control" [(ngModel)]="acctualityPassword">
+              <small class="text-danger" *ngIf="submittedPassword && acctualityPassword.trim() == ''">La contraseña es requerida</small>
+            </div>
+            <div class="col-md-12">
+              <label>Nueva contraseña <span class="text-danger">*</span></label>
+              <input type="password" class="form-control" [(ngModel)]="newPassword">
+              <small class="text-danger" *ngIf="submittedPassword && newPassword.trim() == ''">La nueva contraseña es requerida</small>
+            </div>
+            <div class="col-md-12">
+              <label>Confirme contraseña <span class="text-danger">*</span></label>
+              <input type="password" class="form-control" [(ngModel)]="confirmationPassword">
+              <small class="text-danger" *ngIf="submittedPassword && confirmationPassword.trim() == ''">La confirmación es requerida</small>
+            </div>
+            <div class="col-md-12">
+              <small class="text-danger" *ngIf="submittedPassword && newPassword.trim() == acctualityPassword.trim()">La nueva contraseña no puede ser igual a la actual</small>
+            </div>
+            <div class="col-md-12">
+              <small class="text-danger" *ngIf="submittedPassword && newPassword.trim() != confirmationPassword.trim()">La nueva contraseña no es igual a la confirmación</small>
+            </div>
+            <div class="col-md-12">
+              <small class="text-danger">(*) Campos obligatorios</small>
+            </div>
+        </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-rounded btn-success" (click)="saveNewPassword()">Guardar</button>
+  </div>
+</ng-template>

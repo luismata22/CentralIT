@@ -1,0 +1,141 @@
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.csprojAssemblyReference.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.AssemblyInfoInputs.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.AssemblyInfo.cs
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.csproj.CoreCompileInputs.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.exe
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.deps.json
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.runtimeconfig.json
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.runtimeconfig.dev.json
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.pdb
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\staticwebassets\CentralIT.API.StaticWebAssets.Manifest.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\staticwebassets\CentralIT.API.StaticWebAssets.xml
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\scopedcss\bundle\CentralIT.API.styles.css
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.RazorTargetAssemblyInfo.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.csproj.CopyComplete
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.pdb
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.genruntimeconfig.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Repository.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Repository.pdb
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.csprojAssemblyReference.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.AssemblyInfoInputs.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.AssemblyInfo.cs
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.csproj.CoreCompileInputs.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.pdb
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.exe
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.deps.json
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.runtimeconfig.json
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.runtimeconfig.dev.json
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.pdb
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Repository.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Repository.pdb
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\staticwebassets\CentralIT.API.StaticWebAssets.Manifest.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\staticwebassets\CentralIT.API.StaticWebAssets.xml
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\scopedcss\bundle\CentralIT.API.styles.css
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.RazorTargetAssemblyInfo.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.csproj.CopyComplete
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.genruntimeconfig.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.exe
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.deps.json
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.runtimeconfig.json
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.runtimeconfig.dev.json
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.API.pdb
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Repository.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\bin\Debug\netcoreapp3.1\CentralIT.Repository.pdb
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.csprojAssemblyReference.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.AssemblyInfoInputs.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.AssemblyInfo.cs
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.csproj.CoreCompileInputs.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\staticwebassets\CentralIT.API.StaticWebAssets.Manifest.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\staticwebassets\CentralIT.API.StaticWebAssets.xml
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\scopedcss\bundle\CentralIT.API.styles.css
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.RazorTargetAssemblyInfo.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.csproj.CopyComplete
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.pdb
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.API\obj\Debug\netcoreapp3.1\CentralIT.API.genruntimeconfig.cache

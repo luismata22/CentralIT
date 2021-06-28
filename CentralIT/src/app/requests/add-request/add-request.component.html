@@ -1,0 +1,496 @@
+<section  id="ngx">
+    <div  class="card">
+        <div  class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <h4 class="card-title"><b>Crear solicitud</b></h4>
+                        <div class="divider-requests"></div>
+                    </div>
+                </div>
+            </div>
+            <div  class="card-block">
+                <div  class="board">
+                        <ul  class="wizard-navbar">
+                            <div class="liner"></div>
+                            <li [ngClass]="basicData ? 'active' : ''" class="flex-fill">
+                                <a uisrefactive="active" uisref="personal" data-toggle="tab" ngbTooltip="Datos básicos" ng-reflect-ng-class="nav-link active" [ngClass]="basicData ? 'active' : ''" class="nav-link">
+                                    <span class="round-tabs one">
+                                        <i class="fas fa-sticky-note"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li [ngClass]="workerData ? 'active' : ''" class="flex-fill">
+                                <a uisrefactive="active" uisref="work" data-toggle="tab" ngbTooltip="Datos del trabajador" ng-reflect-ng-class="nav-link" [ngClass]="workerData ? 'active' : ''" class="nav-link">
+                                    <span class="round-tabs two">
+                                        <i class="fas fa-address-card"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li [ngClass]="companyData ? 'active' : ''" class="flex-fill">
+                                <a uisrefactive="active" uisref="address" data-toggle="tab" ngbTooltip="Datos del departamento" ng-reflect-ng-class="nav-link" [ngClass]="companyData ? 'active' : ''" class="nav-link">
+                                    <span class="round-tabs three">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li [ngClass]="confirmData ? 'active' : ''" class="flex-fill">
+                                <a uisrefactive="active" uisref="result" data-toggle="tab" ngbTooltip="Confirmar datos" ng-reflect-ng-class="nav-link" [ngClass]="confirmData ? 'active' : ''" class="nav-link">
+                                    <span class="round-tabs four">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div [ngStyle]="{'display' : basicData ? 'block' : 'none'}">
+                            <h4 class="font-medium-2 text-center">Datos básicos</h4>
+                            <div class="divider-requests"></div>
+                            <div  class="tab-content">
+                                    <div class="tab-pane active">
+                                        <br _ngcontent-kgr-c279="">
+                                        <ng-template #modalUserSearch let-modal>
+                                            <div class="modal-header">
+                                              <h4 class="modal-title" id="modal-basic-title">Buscar usuario</h4>
+                                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                  <div class="row">
+                                                      <div class="col-md-4">
+                                                          <div class="form-group">
+                                                              <label>Correo <span class="text-danger">*</span></label>
+                                                              <input type="text" (keyup.enter)="searchUser()" class="form-control" [(ngModel)]="userSearch.email">
+                                                          </div>
+                                                      </div>
+                                                      <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Cédula <span class="text-danger">*</span></label>
+                                                            <input type="text" (keyup.enter)="searchUser()" class="form-control" [(ngModel)]="userSearch.identityCard">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label>Nombre <span class="text-danger">*</span></label>
+                                                            <input type="text" (keyup.enter)="searchUser()" class="form-control" [(ngModel)]="userSearch.name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-1 col-md-1">
+                                                        <button type="button" style="margin-top: 30px;" ngbTooltip="Buscar usuario" class="btn btn-rounded btn-info" (click)="searchUser()">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <small class="text-danger">(*) Ingrese
+                                                          por lo menos un filtro</small>
+                                                      </div>
+                                                    <div class="col-md-12">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                            <tr>
+                                                                <th scope="col">Correo</th>
+                                                              <th scope="col">Nombre</th>
+                                                              <th scope="col">Cédula</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr *ngFor="let user of userListSearch">
+                                                              <td>{{user.email}}</td>
+                                                              <td>{{user.firstName + " " + user.firstLastName}}</td>
+                                                              <td>{{user.identityCard}}</td>
+                                                              <td><button type="button" class="btn btn-rounded btn-success" (click)="acceptUser(user)"><i class="fas fa-check"></i></button></td>
+                                                            </tr>
+                                                            </tbody>
+                                                          </table>
+                                                          <div class="d-flex justify-content-between p-2">
+                                                            <ngb-pagination [collectionSize]="collectionSizeRU" [(page)]="pageRU" [pageSize]="pageSizeRU" (pageChange)="refreshUsers()">
+                                                            </ngb-pagination>
+                                                          
+                                                            <select class="custom-select" style="width: auto" [(ngModel)]="pageSizeRU" (ngModelChange)="refreshUsers()">
+                                                              <option [ngValue]="5">5 registros por página</option>
+                                                              <option [ngValue]="10">10 registros por página</option>
+                                                              <option [ngValue]="15">15 registros por página</option>
+                                                            </select>
+                                                          </div>
+                                                    </div>
+                                                  </div>
+                                            </div>
+                                          </ng-template>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <div class="form-check form-check-inline">
+                                                                <input type="checkbox" class="form-check-input" [(ngModel)]="validateRequestThird" (change)="ValidateRequest()">
+                                                                <label _ngcontent-kad-c259="" for="inlineCheckbox2" class="form-check-label">Crear solicitud a tercero</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Nombre del solicitante <span class="text-danger">*</span></label>
+                                                            <input required="" [disabled]="true" type="text" class="form-control input-md ng-pristine ng-invalid ng-touched" [(ngModel)]="_request.fullNameUserRequest">
+                                                            <small class="text-danger" *ngIf="nextWorker && _request.idUserRequest <= 0">El usuario solicitante es requerido</small>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="col-12 col-sm-1">
+                                                        <button type="button" [disabled]="validateRequestThird == false" class="btn btn-rounded btn-info" (click)="searchUser(1)">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
+                                                    </div> -->
+                                                    <!-- <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="lastname" class="form-control-label">Tipo de solicitud <span class="text-danger">*</span></label>
+                                                            <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="_request.requestType.idRequestType">
+                                                                <option [value]="-1" style="display: none;">Seleccione...</option>
+                                                                <option *ngFor="let requestType of requestTypeList" [value]="requestType.idRequestType">{{requestType.name}}</option>
+                                                            </select>
+                                                            <small class="text-danger" *ngIf="nextWorker && _request.requestType.idRequestType <= 0">El tipo de solictud es requerido</small>
+                                                        </div>
+                                                    </div> -->
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6">
+                                                        <label for="requesta" class="form-control-label">Servicio asociado <span class="text-danger">*</span></label>
+                                                        <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="_request.service.idService">
+                                                            <option [value]="-1" style="display: none;">Seleccione...</option>
+                                                            <option *ngFor="let service of serviceList" [value]="service.idService">{{service.name}}</option>
+                                                        </select>
+                                                        <small class="text-danger" *ngIf="nextWorker && _request.service.idService <= 0">El servicio es requerido</small>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <label for="reason" class="form-control-label">Motivo <span class="text-danger">*</span></label>
+                                                        <input required="" reason="" [(ngModel)]="_request.reason" id="reason" name="reason" type="text" class="form-control input-md ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-name="email" ng-reflect-email="" ng-reflect-model="">
+                                                        <small class="text-danger" *ngIf="nextWorker && _request.reason.trim() == ''">El motivo es requerido</small>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-top: 20px;">
+                                                    <label for="detail" class="form-control-label">Observación</label>
+                                                    <input required="" [(ngModel)]="_request.observation" detail="" id="detail" name="detail" type="text" class="form-control input-md ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-name="email" ng-reflect-email="" ng-reflect-model="">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="text-danger">(*) Campos obligatorios</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group text-center">
+                                                    <button type="button" uisref="work" class="btn btn-raised btn-secondary mr-1" (click)="cancelnewrequest()">
+                                                        <i class="fas fa-close"></i> Cancelar 
+                                                    </button>
+                                                    <button type="button" uisref="work" class="btn btn-success btn-raised" (click)="nextworkerdata()"> Siguiente 
+                                                        <i class="fas fa-chevron-circle-right"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div [ngStyle]="{'display' : workerData ? 'block' : 'none'}">
+                            <h4 class="font-medium-2 text-center">Datos del trabajador</h4>
+                            <div class="divider-requests"></div>
+                            <div  class="tab-content">
+                                    <div class="tab-pane active">
+                                        <br _ngcontent-kgr-c279="">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <!-- <div class="col-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <div class="form-check form-check-inline">
+                                                                <input type="checkbox" class="form-check-input" [(ngModel)]="validateAttendedUser" (change)="ValidateRequest()">
+                                                                <label _ngcontent-kad-c259="" for="inlineCheckbox2" class="form-check-label">Asignar usuario que atenderá la solictud</label>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="col-12 col-sm-11">
+                                                        <div class="form-group">
+                                                            <label for="firstname" class="form-control-label">Correo eléctronico <span class="text-danger">*</span></label>
+                                                            <input required=""(focusout)="searchUserByEmail()" (keypress)="keyPressEmail($event);" (keyup.backspace)="keyPressEmail($event);" id="firstname" [disabled]="validateRequestThird == false || _request.userRequestedId.userId > 0" name="firstname" [(ngModel)]="_request.userRequestedId.email" type="text" class="form-control input-md ng-pristine ng-invalid ng-touched">
+                                                            <small class="text-danger" *ngIf="nextCompany && _request.userRequestedId.email.trim() == ''">El correo electrónico es requerido</small>
+                                                            <small class="text-danger" *ngIf="invalidemail">Correo electrónico inválido</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-1">
+                                                        <button type="button"style="margin-top: 30px" class="btn btn-rounded btn-info" (click)="searchUserModal()" [disabled]="validateRequestThird == false">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="firstname" class="form-control-label">Nombre <span class="text-danger">*</span></label>
+                                                            <input required="" [disabled]="validateRequestThird == false || _request.userRequestedId.userId > 0" id="firstname" name="firstname" [(ngModel)]="_request.userRequestedId.firstName" type="text" class="form-control input-md ng-pristine ng-invalid ng-touched">
+                                                            <small class="text-danger" *ngIf="nextCompany && _request.userRequestedId.firstName.trim() == ''">El nombre es requerido</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <label for="reason" class="form-control-label">Apellido <span class="text-danger">*</span></label>
+                                                        <input required="" [disabled]="validateRequestThird == false || _request.userRequestedId.userId > 0" reason="" id="reason" name="reason" [(ngModel)]="_request.userRequestedId.firstLastName" type="text" class="form-control input-md ng-untouched ng-pristine ng-invalid">
+                                                        <small class="text-danger" *ngIf="nextCompany && _request.userRequestedId.firstLastName.trim() == ''">El apellido es requerido</small>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="firstname" class="form-control-label">Cédula de identidad <span class="text-danger">*</span></label>
+                                                            <input required="" mask="S-00000000" placeholder="V-00000000" [disabled]="validateRequestThird == false || _request.userRequestedId.userId > 0" id="firstname" name="firstname" [(ngModel)]="_request.userRequestedId.identityCard" type="text" class="form-control input-md ng-pristine ng-invalid ng-touched">
+                                                            <small class="text-danger" *ngIf="nextCompany && _request.userRequestedId.identityCard.trim() == ''">La cédula es requerida</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <label for="reason" class="form-control-label">Número de contacto <span class="text-danger">*</span></label>
+                                                        <input required="" mask="(0000) 000 0000" placeholder="(0000) 000 0000" [disabled]="validateRequestThird == false || _request.userRequestedId.userId > 0" reason="" id="reason" name="reason" [(ngModel)]="_request.userRequestedId.mainPhone" type="text" class="form-control input-md ng-untouched ng-pristine ng-invalid">
+                                                        <small class="text-danger" *ngIf="nextCompany && _request.userRequestedId.mainPhone.trim() == ''">El número de contacto es requerido</small>
+                                                    </div>
+                                                    <!-- <div class="col-12 col-sm-2">
+                                                        <label for="requesta" class="form-control-label">Extensión</label>
+                                                        <input required="" [disabled]="validateRequestThird == false || _request.userRequestedId.userId > 0" requesta="" id="requesta" name="requesta" type="text" class="form-control input-md ng-untouched ng-pristine ng-invalid">
+                                                    </div> -->
+                                                    <div class="col-md-12">
+                                                        <label class="text-danger">(*) Campos obligatorios</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                </div>
+                                                <div class="form-group text-center">
+                                                    <button type="button" uisref="work" class="btn btn-raised btn-secondary mr-1" (click)="cancelnewrequest()">
+                                                        <i class="fas fa-close"></i> Cancelar 
+                                                    </button>
+                                                    <button type="button" uisref="work" class="btn btn-raised btn-secondary mr-1" (click)="backbasicdata()">
+                                                        <i class="fas fa-chevron-circle-left"></i> Anterior 
+                                                    </button>
+                                                    <button type="button" uisref="work" [disabled]="blocknextcompany == true" class="btn btn-success btn-raised" (click)="nextcompanydata()"> Siguiente 
+                                                        <i class="fas fa-chevron-circle-right"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div [ngStyle]="{'display' : companyData ? 'block' : 'none'}">
+                            <h4 class="font-medium-2 text-center">Datos del departamento</h4>
+                            <div class="divider-requests"></div>
+                            <div  class="tab-content">
+                                    <div class="tab-pane active">
+                                        <br _ngcontent-kgr-c279="">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <!-- <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="lastname" class="form-control-label">Empresa <span class="text-danger">*</span></label>
+                                                            <select id="exampleFormControlSelect1" class="form-control">
+                                                                <option>Seleccione...</option>
+                                                                <option>Activo</option>
+                                                                <option>Inactivo</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="lastname" class="form-control-label">Sucursal <span class="text-danger">*</span></label>
+                                                            <select id="exampleFormControlSelect1" class="form-control">
+                                                                <option>Seleccione...</option>
+                                                                <option>Activo</option>
+                                                                <option>Inactivo</option>
+                                                            </select>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="lastname" class="form-control-label">Departamento<span class="text-danger">*</span></label>
+                                                            <ng-multiselect-dropdown [disabled]="_request.userRequestedId.userId > 0"
+                                                                [placeholder]="'Seleccione...'"
+                                                                [settings]="dropdownSettings"
+                                                                [data]="departmentList"
+                                                                [(ngModel)]="selectedDepartment"
+                                                                (onDeSelect)="onItemunSelectDepartment($event)"
+                                                                (onSelect)="onItemSelectDepartment($event)"
+                                                                (onSelectAll)="onSelectAll($event)">
+                                                            </ng-multiselect-dropdown>
+                                                           <!--  <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="_request.departmentId">
+                                                                <option [value]="-1" style="display: none;">Seleccione...</option>
+                                                                <option *ngFor="let department of departmentsList" value="{{department.idDepartment}}">{{department.name}}</option>
+                                                            </select> -->
+                                                            <small class="text-danger" *ngIf="nextFinish && _request.userRequestedId.departments.idDepartment <= 0">El departamento es requerido</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="lastname" class="form-control-label">Cargo <span class="text-danger">*</span></label>
+                                                            <ng-multiselect-dropdown [disabled]="_request.userRequestedId.userId > 0"
+                                                                [placeholder]="'Seleccione...'"
+                                                                [settings]="dropdownSettings"
+                                                                [data]="positionList"
+                                                                [(ngModel)]="selectedPosition"
+                                                                (onDeSelect)="onItemunSelectPosition($event)"
+                                                                (onSelect)="onItemSelectPosition($event)"
+                                                                (onSelectAll)="onSelectAll($event)">
+                                                            </ng-multiselect-dropdown>
+                                                            <!-- <select id="exampleFormControlSelect1" class="form-control">
+                                                                <option [value]="1" selected>Activo</option>
+                                                                <option [value]="2">Inactivo</option>
+                                                            </select> -->
+                                                            <small class="text-danger" *ngIf="nextFinish && _request.userRequestedId.positionDepartmentId <= 0">El cargo es requerido</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-12">
+                                                        <label class="text-danger">(*) Campos obligatorios</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                </div>
+                                                <div class="form-group text-center">
+                                                    <button type="button" uisref="work" class="btn btn-raised btn-secondary mr-1" (click)="cancelnewrequest()">
+                                                        <i class="fas fa-close"></i> Cancelar 
+                                                    </button>
+                                                    <button type="button" uisref="work" class="btn btn-raised btn-secondary mr-1" (click)="backworkerdata()">
+                                                        <i class="fas fa-chevron-circle-left"></i> Anterior 
+                                                    </button>
+                                                    <button type="button" uisref="work" class="btn btn-success btn-raised" (click)="nextconfirmdata()"> Siguiente 
+                                                        <i class="fas fa-chevron-circle-right"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div [ngStyle]="{'display' : confirmData ? 'block' : 'none'}">
+                            <h4 class="font-medium-2 text-center">Confirmar</h4>
+                            <div class="divider-requests"></div>
+                            <div  class="tab-content">
+                                    <div class="tab-pane active">
+                                        <br _ngcontent-kgr-c279="">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label for="firstname" class="form-control-label">Nombre del solicitante</label>
+                                                            <input required="" disabled id="firstname" name="firstname" type="text" [(ngModel)]="_request.fullNameUserRequest" class="form-control input-md ng-pristine ng-invalid ng-touched" ng-reflect-required="" ng-reflect-name="firstname" ng-reflect-model="">
+                                                            <!-- <small class="form-text text-muted danger">This field is required!</small> -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="lastname" class="form-control-label">Tipo de solicitud</label>
+                                                            <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="_request.requestType.idRequestType" [disabled]="true">
+                                                                <option *ngFor="let requestType of requestTypeList" [value]="requestType.idRequestType" [selected]="requestType.idRequestType === _request.requestType.idRequestType">{{requestType.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div> -->
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6">
+                                                        <label for="requesta" class="form-control-label">Servicio asociado</label>
+                                                        <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="_request.service.idService" [disabled]="true">
+                                                            <option *ngFor="let service of serviceList" [value]="service.idService" [selected]="service.idService === _request.service.idService">{{service.name}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="reason" class="form-control-label">Motivo</label>
+                                                            <input required="" disabled reason="" id="reason" name="reason" [(ngModel)]="_request.reason" type="text" class="form-control input-md ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-name="email" ng-reflect-email="" ng-reflect-model="">
+                                                        </div>
+                                                    </div>
+                                                
+                                                <div class="col-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="detail" class="form-control-label">Observación</label>
+                                                        <input required="" disabled detail="" id="detail" name="detail" [(ngModel)]="_request.observation" type="text" class="form-control input-md ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-name="email" ng-reflect-email="" ng-reflect-model="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="firstname" class="form-control-label">Correo eléctronico</label>
+                                                        <input required="" disabled id="firstname" name="firstname" type="text" [(ngModel)]="_request.userRequestedId.email" class="form-control input-md ng-pristine ng-invalid ng-touched" ng-reflect-required="" ng-reflect-name="firstname" ng-reflect-model="">
+                                                        <!-- <small class="form-text text-muted danger">This field is required!</small> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="firstname" class="form-control-label">Nombre</label>
+                                                        <input required="" disabled id="firstname" name="firstname" type="text" [(ngModel)]="_request.userRequestedId.firstName" class="form-control input-md ng-pristine ng-invalid ng-touched" ng-reflect-required="" ng-reflect-name="firstname" ng-reflect-model="">
+                                                        <!-- <small class="form-text text-muted danger">This field is required!</small> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <label for="reason" class="form-control-label">Apellido</label>
+                                                    <input required="" disabled reason="" id="reason" name="reason" type="text" [(ngModel)]="_request.userRequestedId.firstLastName" class="form-control input-md ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-name="email" ng-reflect-email="" ng-reflect-model="">
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="firstname" class="form-control-label">Cédula de identidad</label>
+                                                        <input required="" disabled id="firstname" name="firstname" type="text" [(ngModel)]="_request.userRequestedId.identityCard" class="form-control input-md ng-pristine ng-invalid ng-touched" ng-reflect-required="" ng-reflect-name="firstname" ng-reflect-model="">
+                                                        <!-- <small class="form-text text-muted danger">This field is required!</small> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <label for="reason" class="form-control-label">Número de contacto</label>
+                                                    <input required="" disabled reason="" id="reason" name="reason" type="text" [(ngModel)]="_request.userRequestedId.mainPhone" class="form-control input-md ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-name="email" ng-reflect-email="" ng-reflect-model="">
+                                                </div>
+                                                <!-- <div class="col-12 col-sm-2">
+                                                    <label for="requesta" class="form-control-label">Extensión</label>
+                                                    <input required="" disabled requesta="" id="requesta" name="requesta" type="text" class="form-control input-md ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-name="email" ng-reflect-email="" ng-reflect-model="">
+                                                </div> -->
+                                                <!-- <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="lastname" class="form-control-label">Empresa</label>
+                                                        <select disabled id="exampleFormControlSelect1" class="form-control">
+                                                            <option>Seleccione...</option>
+                                                            <option>Activo</option>
+                                                            <option>Inactivo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="lastname" class="form-control-label">Sucursal</label>
+                                                        <select id="exampleFormControlSelect1" disabled class="form-control">
+                                                            <option>Seleccione...</option>
+                                                            <option>Activo</option>
+                                                            <option>Inactivo</option>
+                                                        </select>
+                                                    </div>
+                                                </div> -->
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="lastname" class="form-control-label">Departamento</label>
+                                                        <input required="" disabled id="firstname" name="firstname" [(ngModel)]="_request.userRequestedId.departments.name" type="text" class="form-control input-md ng-pristine ng-invalid ng-touched">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="lastname" class="form-control-label">Cargo</label>
+                                                        <input required="" disabled id="firstname" name="firstname" [(ngModel)]="_request.userRequestedId.positions.name" type="text" class="form-control input-md ng-pristine ng-invalid ng-touched">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label class="text-danger">(*) Campos obligatorios</label>
+                                                </div>
+                                            </div>
+                                                <div class="form-group text-center">
+                                                    <button type="button" uisref="work" class="btn btn-raised btn-secondary mr-1" (click)="cancelnewrequest()">
+                                                        <i class="fas fa-close"></i> Cancelar 
+                                                    </button>
+                                                    <button type="button" uisref="work" class="btn btn-raised btn-secondary mr-1" (click)="backcompanydata()">
+                                                        <i class="fas fa-chevron-circle-left"></i> Anterior 
+                                                    </button>
+                                                    <button type="button" uisref="work" class="btn btn-success btn-raised" (click)="saveRequest()">
+                                                        <i class="fas fa-save"></i> Guardar 
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

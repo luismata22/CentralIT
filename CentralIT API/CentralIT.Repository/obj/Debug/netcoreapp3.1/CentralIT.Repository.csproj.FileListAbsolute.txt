@@ -1,0 +1,36 @@
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Repository.deps.json
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Repository.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Repository.pdb
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.csprojAssemblyReference.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.AssemblyInfoInputs.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.AssemblyInfo.cs
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.csproj.CoreCompileInputs.cache
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.pdb
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\LMataD\Desktop\CentralIT\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.csproj.CopyComplete
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.csprojAssemblyReference.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.AssemblyInfoInputs.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.AssemblyInfo.cs
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.csproj.CoreCompileInputs.cache
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.pdb
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Repository.deps.json
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Repository.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Repository.pdb
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\LMataD\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.csproj.CopyComplete
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Repository.deps.json
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Repository.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Repository.pdb
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Domain.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\bin\Debug\netcoreapp3.1\CentralIT.Domain.pdb
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.csprojAssemblyReference.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.AssemblyInfoInputs.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.AssemblyInfo.cs
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.csproj.CoreCompileInputs.cache
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.csproj.CopyComplete
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.dll
+C:\Users\lmatad.LAFABRICA\Desktop\CentralIT Project\CentralIT API\CentralIT.Repository\obj\Debug\netcoreapp3.1\CentralIT.Repository.pdb

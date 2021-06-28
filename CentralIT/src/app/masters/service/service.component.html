@@ -1,0 +1,122 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="card-title">Busqueda personalizada</h4>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                            <ng-template #modalService let-modal>
+                              <div class="modal-header">
+                                <h4 class="modal-title" id="modal-basic-title">Servicio</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input type="text" class="form-control" [(ngModel)]="_service.name" maxlength="100">
+                                                <small class="text-danger" *ngIf="submitted && _service.name.trim() == ''">El nombre es requerido</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                                <div class="form-check form-check-inline" style="position: absolute; right: 0; bottom: 30%;">
+                                                    <input _ngcontent-kad-c259="" [disabled]="_service.idService <= 0" [(ngModel)]="_service.status" type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input">
+                                                    <label _ngcontent-kad-c259="" for="inlineCheckbox2" class="form-check-label">Activo</label>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                          <div class="form-group">
+                                              <label>Departamento <span class="text-danger">*</span></label>
+                                              <ng-multiselect-dropdown class="multiselect"
+                                                  [placeholder]="'Seleccione...'"
+                                                  [settings]="dropdownSettings"
+                                                  [data]="departmentList"
+                                                  [(ngModel)]="selectedDepartment"
+                                                  (onSelect)="onItemSelect($event)"
+                                                  (onSelectAll)="onSelectAll($event)"
+                                                  >
+                                              </ng-multiselect-dropdown>
+                                              <small class="text-danger" *ngIf="submitted && _service.department.length <= 0">Seleccione un departamento</small>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="form-control" style="resize: none;" cols="5" rows="3" [(ngModel)]="_service.description" maxlength="100"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-rounded btn-success" (click)="saveService()">Guardar</button>
+                              </div>
+                            </ng-template>
+                            <div class="col-md-6" style="text-align: right;">
+                                <button type="button" class="btn btn-rounded btn-success" *ngIf="this.userPermissions.allowed(this.permissionsIDs.UPDATE_POSITION_PERMISSION_ID)" (click)="showModalService()">Nuevo</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Servicio</label>
+                        <input type="text" class="form-control" [(ngModel)]="serviceFilters.service" (keyup.enter)="search()">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Estatus</label>
+                        <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="serviceFilters.status" (keyup.enter)="search()">
+                          <option value="-1">Todos</option>
+                          <option value="1">Activo</option>
+                          <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12" style="text-align: right;">
+                      <button type="button" class="btn btn-rounded btn-secondary mr-1" style="margin-top: 10px;" (click)="clearFilters()">Limpiar</button>
+                      <button type="button" class="btn btn-rounded btn-info" style="margin-top: 10px;" (click)="search()">Buscar</button>
+                    </div>
+                </div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+                <h4 class="card-title">Servicios</h4>
+                <div class="dropdown-divider"></div>
+                  
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th scope="col">Servicio</th>
+                      <th scope="col">Descripción</th>
+                      <th scope="col">Departamento</th>
+                      <th scope="col">Estatus</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let service of _serviceList">
+                      <td>{{service.name}}</td>
+                      <td>{{service.description}}</td>
+                      <td>{{service.nameDepartment}}</td>
+                      <td>{{service.status == true ? 'Activo' : 'Inactivo'}}</td>
+                      <td><button type="button" class="btn btn-rounded btn-success" *ngIf="this.userPermissions.allowed(this.permissionsIDs.UPDATE_POSITION_PERMISSION_ID)" (click)="editService(service.idService, service.name,service.description, service.status, service.department)" ngbTooltip="Editar"><i class="fas fa-edit"></i></button></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshServices()">
+                    </ngb-pagination>
+                  
+                    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshServices()">
+                      <option [ngValue]="5">5 registros por página</option>
+                      <option [ngValue]="10">10 registros por página</option>
+                      <option [ngValue]="15">15 registros por página</option>
+                    </select>
+                  </div>
+			</div>
+		</div>
+	</div>
+</div>

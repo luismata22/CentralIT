@@ -1,0 +1,105 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="card-title">Busqueda personalizada</h4>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                            <ng-template #modalPosition let-modal>
+                              <div class="modal-header">
+                                <h4 class="modal-title" id="modal-basic-title">Cargo</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input type="text" class="form-control" [(ngModel)]="_position.name" maxlength="100">
+                                                <small class="text-danger" *ngIf="submitted && _position.name.trim() == ''">El nombre es requerido</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                                <div class="form-check form-check-inline" style="position: absolute; right: 0; bottom: 30%;">
+                                                    <input _ngcontent-kad-c259="" [disabled]="_position.idPosition <= 0" [(ngModel)]="_position.status" type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input">
+                                                    <label _ngcontent-kad-c259="" for="inlineCheckbox2" class="form-check-label">Activo</label>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                          <div class="form-group">
+                                              <label>Descripción</label>
+                                              <textarea class="form-control" style="resize: none;" cols="5" rows="3" [(ngModel)]="_position.description" maxlength="100"></textarea>
+                                          </div>
+                                        </div>
+                                    </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-rounded btn-success" (click)="savePosition()">Guardar</button>
+                              </div>
+                            </ng-template>
+                            <div class="col-md-6" style="text-align: right;">
+                                <button type="button" class="btn btn-rounded btn-success" *ngIf="this.userPermissions.allowed(this.permissionsIDs.UPDATE_POSITION_PERMISSION_ID)" (click)="showModalPosition()">Nuevo</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Cargo</label>
+                        <input type="text" class="form-control" [(ngModel)]="positionFilter.position" (keyup.enter)="search()">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Estatus</label>
+                        <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="positionFilter.status" (keyup.enter)="search()">
+                          <option value="-1">Todos</option>
+                          <option value="1">Activo</option>
+                          <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12" style="text-align: right;">
+                      <button type="button" class="btn btn-rounded btn-secondary mr-1" style="margin-top: 10px;" (click)="clearFilters()">Limpiar</button>
+                      <button type="button" class="btn btn-rounded btn-info" style="margin-top: 10px;" (click)="search()">Buscar</button>
+                  </div>
+                </div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+                <h4 class="card-title">Cargos</h4>
+                <div class="dropdown-divider"></div>
+                  
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th scope="col">Cargo</th>
+                      <th scope="col">Descripción</th>
+                      <th scope="col">Estatus</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let position of _positionList">
+                      <td>{{position.name}}</td>
+                      <td>{{position.description}}</td>
+                      <td>{{position.status == true ? 'Activo' : 'Inactivo'}}</td>
+                      <td><button type="button" *ngIf="this.userPermissions.allowed(this.permissionsIDs.UPDATE_POSITION_PERMISSION_ID)" class="btn btn-rounded btn-success" (click)="editPosition(position.idPosition, position.name, position.description, position.status)" ngbTooltip="Editar"><i class="fas fa-edit"></i></button></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshPositions()">
+                    </ngb-pagination>
+                  
+                    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshPositions()">
+                      <option [ngValue]="5">5 registros por página</option>
+                      <option [ngValue]="10">10 registros por página</option>
+                      <option [ngValue]="15">15 registros por página</option>
+                    </select>
+                  </div>
+			</div>
+		</div>
+	</div>
+</div>

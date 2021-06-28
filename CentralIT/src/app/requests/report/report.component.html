@@ -1,0 +1,211 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h4 class="card-title">Busqueda personalizada</h4>
+                    <div class="dropdown-divider"></div>
+                  </div>
+    
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label>Nro. Solicitud</label>
+                <input type="number" (keyup.enter)="search()" class="form-control" [(ngModel)]="reportfilter.request" min="1">
+              </div>
+              <div class="col-md-4 form-group">
+                <label>Desde</label>
+                <input type="date" (keyup.enter)="search()" class="form-control" (ngModelChange)="updatefrom($event)"
+                  [(ngModel)]="fromDate">
+              </div>
+              <div class="col-md-4 form-group">
+                <label>Hasta</label>
+                <input type="date" (keyup.enter)="search()" class="form-control" (ngModelChange)="updateto($event)" [(ngModel)]="toDate">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5 form-group">
+                <label>Atendida por</label>
+                <input type="text" (keyup.enter)="search()" [disabled]="true" class="form-control" [(ngModel)]="reportfilter.userAttended">
+              </div>
+              <div class="col-12 col-sm-1 col-md-1">
+                <button type="button" ngbTooltip="Buscar usuario" (keyup.enter)="search()" style="margin-top: 30px;" class="btn btn-rounded btn-info" (click)="searchUserAttendedModal()">
+                    <i class="fas fa-search"></i>
+                </button>
+              </div>
+              <div class="col-md-5 form-group">
+                <label>Solicitada por</label>
+                <input type="text" (keyup.enter)="search()" [disabled]="true" class="form-control" [(ngModel)]="reportfilter.userRequested">
+              </div>
+              <div class="col-12 col-sm-1 col-md-1">
+                <button type="button" ngbTooltip="Buscar usuario" (keyup.enter)="search()" style="margin-top: 30px;" class="btn btn-rounded btn-info" (click)="searchUserRequestedModal()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-md-4 form-group">
+                <label>Servicio asociado</label>
+                <select id="exampleFormControlSelect1" (keyup.enter)="search()" class="form-control" [(ngModel)]="reportfilter.serviceId" (change)="ChargeDepartments()">
+                  <option [value]="-1" style="display: none;">Seleccione...</option>
+                  <option *ngFor="let service of serviceList" [value]="service.idService">{{service.name}}</option>
+                </select>
+              </div>
+              <div class="col-md-4 form-group">
+                <label>Departamento</label>
+                <select id="exampleFormControlSelect1" [disabled]="true" class="form-control" [(ngModel)]="reportfilter.departmentId" (keyup.enter)="search()">
+                  <option *ngFor="let department of departmentList" [value]="department.idDepartment">{{department.name}}</option>
+                </select>
+                <!-- <ng-multiselect-dropdown [placeholder]="'Seleccione...'" [settings]="dropdownSettings" (keyup.enter)="search()"
+                  [data]="departmentList" [(ngModel)]="selectedDepartment" (onSelect)="onItemSelectDepartment($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown> -->
+              </div>
+              <div class="col-md-4 form-group">
+                <label>Estatus</label>
+                <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="reportfilter.statusId" (keyup.enter)="search()">
+                  <option value="-1">Todos</option>
+                  <option *ngFor="let status of statusList" [value]="status.idStatus">{{status.name}}</option>
+                </select>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col-md-12" style="text-align: right;">
+                <button type="button" class="btn btn-rounded btn-primary mr-1" style="margin-top: 10px;" (click)="exportPdf()"
+                  >Exportar a PDF</button>
+                <button type="button" class="btn btn-rounded btn-secondary mr-1" style="margin-top: 10px;"
+                  (click)="clearFilters()">Limpiar</button>
+                <button type="button" class="btn btn-rounded btn-info" style="margin-top: 10px;"
+                  (click)="search()">Buscar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5>Reporte de solictudes</h5>
+            <div class="dropdown-divider"></div>
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">Solicitud</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Solicitante</th>
+                <th scope="col">Cargo solicitante</th>
+                <th scope="col">Atendida por</th>
+                <th scope="col">Estatus</th>
+                <th scope="col">Fecha solicitud</th>
+                <th scope="col">Fecha atención</th>
+                <th scope="col">Fecha finalización</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let request of reportRequestList">
+                <td><b>{{request.requestId}}</b> {{request.service.name}}</td>
+                <td>{{request.department.name}}</td>
+                <td>{{request.userRequested}}</td>
+                <td>{{request.position.name}}</td>
+                <td>{{request.userAttended}}</td>
+                <td>{{request.requestStatus.name}}</td>
+                <td>{{request.requestDate | date: 'dd/MM/yyyy'}}</td>
+                <td>{{(request.attendedDate | date: 'dd/MM/yyyy') == '01/01/0001' || (request.attendedDate | date: 'dd/MM/yyyy') == '01/01/1900' ? 'No posee' : (request.attendedDate | date: 'dd/MM/yyyy')}}</td>
+                <td>{{(request.finishDate | date: 'dd/MM/yyyy') == '01/01/0001' || (request.finishDate | date: 'dd/MM/yyyy') == '01/01/1900' ? 'No posee' : (request.finishDate | date: 'dd/MM/yyyy')}}</td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="d-flex justify-content-between p-2">
+              <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshReport()">
+              </ngb-pagination>
+            
+              <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshReport()">
+                <option [ngValue]="5">5 registros por página</option>
+                <option [ngValue]="10">10 registros por página</option>
+                <option [ngValue]="15">15 registros por página</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<ng-template #modalUserAssing let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Buscar usuario</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Correo <span class="text-danger">*</span></label>
+            <input type="text" (keyup.enter)="searchUser()" class="form-control" [(ngModel)]="userSearch.email">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Cédula <span class="text-danger">*</span></label>
+            <input type="text" (keyup.enter)="searchUser()" class="form-control" [(ngModel)]="userSearch.identityCard">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Nombre <span class="text-danger">*</span></label>
+            <input type="text" (keyup.enter)="searchUser()" class="form-control" [(ngModel)]="userSearch.name">
+          </div>
+        </div>
+        <div class="col-12 col-sm-1 col-md-1">
+          <button type="button" style="margin-top: 30px;" class="btn btn-rounded btn-info" (click)="searchUser()">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12" *ngIf="validateModal ==1">
+          <div class="form-check form-check-inline">
+            <input _ngcontent-kad-c259="" type="checkbox" (change)="userAttendedNotAssigned()" [(ngModel)]="notassigneduserattended" id="inlineCheckbox2" value="option2" class="form-check-input">
+            <label _ngcontent-kad-c259="" for="inlineCheckbox2" class="form-check-label">No asignado</label>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+          <small class="text-danger">(*) Ingrese
+            por lo menos un filtro</small>
+        </div>
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Correo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cédula</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of userListSearch">
+                <td>{{user.email}}</td>
+                <td>{{user.firstName + " " + user.firstLastName}}</td>
+                <td>{{user.identityCard}}</td>
+                <td><button type="button" class="btn btn-rounded btn-success" (click)="acceptUser(user)"><i class="fas fa-check"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="collectionSizeRU" [(page)]="pageRU" [pageSize]="pageSizeRU" (pageChange)="refreshUsers()">
+            </ngb-pagination>
+          
+            <select class="custom-select" style="width: auto" [(ngModel)]="pageSizeRU" (ngModelChange)="refreshUsers()">
+              <option [ngValue]="5">5 registros por página</option>
+              <option [ngValue]="10">10 registros por página</option>
+              <option [ngValue]="15">15 registros por página</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
