@@ -110,9 +110,9 @@
               <tr *ngFor="let request of reportRequestList">
                 <td><b>{{request.requestId}}</b> {{request.service.name}}</td>
                 <td>{{request.department.name}}</td>
-                <td>{{request.userRequested}}</td>
+                <td>{{request.nameUserRequested}}</td>
                 <td>{{request.position.name}}</td>
-                <td>{{request.userAttended}}</td>
+                <td>{{request.nameUserAttended}}</td>
                 <td>{{request.requestStatus.name}}</td>
                 <td>{{request.requestDate | date: 'dd/MM/yyyy'}}</td>
                 <td>{{(request.attendedDate | date: 'dd/MM/yyyy') == '01/01/0001' || (request.attendedDate | date: 'dd/MM/yyyy') == '01/01/1900' ? 'No posee' : (request.attendedDate | date: 'dd/MM/yyyy')}}</td>

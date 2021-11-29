@@ -25,6 +25,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import * as Permissions from 'src/app/shared/utils/access';
 import { UserPermissionsService } from 'src/app/security/shared/service/user/user-permissions.service';
 import { LoginService } from 'src/app/security/shared/service/login.service';
+import { SecurityService } from 'src/app/security/shared/service/security.service';
 
 @Component({
   selector: 'app-panel-requests',
@@ -111,7 +112,8 @@ export class PanelRequestsComponent implements OnInit {
     private userService: UserService,
     private modalService: NgbModal,
     public userPermissions: UserPermissionsService,
-    private _loginService: LoginService) { }
+    private _loginService: LoginService,
+    private securityService: SecurityService) { }
 
   ngOnInit(): void {
     this.userId = Number(this._loginService.idUser);
@@ -126,6 +128,7 @@ export class PanelRequestsComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+    
     this.searchRequestType();
     this.searchService();
     this.searchDepartments();
@@ -153,7 +156,7 @@ export class PanelRequestsComponent implements OnInit {
 
   search(){
     this.requestFilter.requestId = this.requestFilter.request == "" || this.requestFilter.request == null ? -1 : parseInt(this.requestFilter.request);
-    if (this.userPermissions.allowed(this.permissionsIDs.CHECK_MY_REQUEST)){
+    if (this.securityService.permissionsList.find(x => x === this.permissionsIDs.CHECK_MY_REQUEST)){
       this.requestFilter.userRequestedId = this.userId;
       this.requestFilter.userAttendedId = this.userId;
     }
@@ -165,7 +168,6 @@ export class PanelRequestsComponent implements OnInit {
         this.requestFilter.departmentId = data.find(x => x.userId == this.userId).departments.idDepartment;
         this.requestService.getRequestsbyfilter(this.requestFilter).subscribe((data: RequestGetModel[]) => {
           this.requestList = data;
-          console.log(data);
           this.requestPendingList = data.filter(x => x.requestStatus.idStatus == 2);
           this.requestPendingListBD = data.filter(x => x.requestStatus.idStatus == 2);
           this.requestInProgressList = data.filter(x => x.requestStatus.idStatus == 1);

@@ -43,6 +43,7 @@ export class UserComponent implements OnInit {
   permissionsIDs = {...Permissions};
   page = 1;
   pageSize = 5;
+  showFilters: boolean = false;
 
 
   constructor(private router: Router,
@@ -148,7 +149,7 @@ export class UserComponent implements OnInit {
 
   saveNewPassword(){
     this.submittedPassword = true;
-    if (this._userChangePassword.password != "") {
+    if (this._userChangePassword.password != "" && this._userChangePassword.password.length >= 6) {
       this.userService.postNewPassWord(this._userChangePassword).subscribe((data: number) => {
         if(data > 0) {
           this.toastrservice.success("Se ha guardado exitosamente", "Guardado");

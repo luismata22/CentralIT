@@ -5,6 +5,7 @@ import { BaseError } from 'src/app/models/common/errors/baseerror';
 import { LoginModel } from 'src/app/models/security/login';
 import { LoginService } from '../shared/service/login.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserPermissionsService } from '../shared/service/user/user-permissions.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private loginservice: LoginService,
-    private toastrservice: ToastrService) { }
+    private toastrservice: ToastrService,
+    private userPermissionsService: UserPermissionsService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -66,11 +68,11 @@ export class LoginComponent implements OnInit {
       email: credentialsVM.email,
       rememberMe: credentialsVM.rememberMe
     };
-    this.loginservice.login(credentials)
+     this.loginservice.login(credentials)
       .subscribe(result => {
         
         if (result) {
-          var url = this.router.url.replace('login', 'panel-requests');
+          var url = this.router.url.replace('login', 'profile');
           //this.router.navigate(['dashboard']);
           document.location.href = url;
           this.loginInvalid = false;

@@ -11,6 +11,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { LoginService } from '../security/shared/service/login.service';
 import { catchError, filter, map, switchMap, take } from 'rxjs/operators';
 import { Tokens } from '../models/security/tokens';
+import { UserPermissionsService } from '../security/shared/service/user/user-permissions.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -18,13 +19,15 @@ export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   
-  constructor(private _loginService: LoginService) {}
+  constructor(private _loginService: LoginService,
+    private userPersmissionsService: UserPermissionsService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token  = this._loginService.jwt;
     if (token) {
       request = this.setToken(request, token );
     }
+    this.userPersmissionsService.getPermissions();
     request = this.setCors(request);
     console.log("request headers", request.headers);
     return next.handle(request).pipe(

@@ -141,6 +141,8 @@
                                 <label>Contraseña <span class="text-danger">*</span></label>
                                 <input type="password" autocomplete="new-password" class="form-control" [(ngModel)]="_user.password">
                                 <small class="text-danger" *ngIf="submitted && _user.password.trim() == ''">La contraseña es requerida</small>
+                                <small class="text-danger" *ngIf="submitted && _user.password.length < 6 ">La contraseña
+                                    debe poseer al menos 6 carácteres</small>
                             </div>
                         </div>
                     </div>

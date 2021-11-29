@@ -25,6 +25,7 @@ export class SecurityService {
 
   sendToStorage(result: Access[]) {
     localStorage.setItem(this.ACCESS_STATE, JSON.stringify(result));
+    
   }
 
   get permissions() {
@@ -32,9 +33,21 @@ export class SecurityService {
     if (accesses == null) {
       accesses = []
     }
+    this.permissionsList = [];
     Object.values(accesses).map(item => {
             this.permissionsList.push(item.id);
   });
   return this.permissionsList;
+  }
+
+  async getPermissions() {
+      var accesses: Access[] = JSON.parse(localStorage.getItem(this.ACCESS_STATE));
+      if (accesses == null) {
+        accesses = []
+      }
+      Object.values(accesses).map(item => {
+        this.permissionsList.push(item.id);
+      });
+      await this.permissionsList;
   }
 }

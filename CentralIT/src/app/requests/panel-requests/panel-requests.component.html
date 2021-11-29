@@ -595,7 +595,7 @@
         <div class="form-group">
           <label>Servicio</label>
           <select id="exampleFormControlSelect1" class="form-control" [(ngModel)]="_requestDetail.service.idService"
-            [disabled]="_requestDetail.requestStatus.idStatus != 2">
+            [disabled]="this.userPermissions.allowed(this.permissionsIDs.CHECK_MY_REQUEST) || ( _requestDetail.requestStatus.idStatus != 2)">
             <option [value]="-1" style="display: none;">Seleccione...</option>
             <option *ngFor="let service of serviceList" [value]="service.idService"
               [selected]="service.idService === _requestDetail.service.idService">{{service.name}}</option>
@@ -618,7 +618,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-rounded btn-danger" *ngIf="(this.userPermissions.allowed(this.permissionsIDs.CHECK_ALL_REQUEST)) && (_requestDetail.requestStatus.idStatus == 2 || _requestDetail.requestStatus.idStatus == 1)" (click)="CancelRequest(_requestDetail)">Anular</button>
+    <button type="button" class="btn btn-rounded btn-danger" *ngIf="((this.userPermissions.allowed(this.permissionsIDs.CHECK_ALL_REQUEST)) && (_requestDetail.requestStatus.idStatus == 2 || _requestDetail.requestStatus.idStatus == 1)) || (this.userPermissions.allowed(this.permissionsIDs.CANCEL_REQUEST_ID) && _requestDetail.requestStatus.idStatus == 2)" (click)="CancelRequest(_requestDetail)">Anular</button>
     <button type="button" class="btn btn-rounded btn-success" (click)="saveRequest(_requestDetail)">Guardar</button>
   </div>
 </ng-template>
@@ -636,7 +636,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">No</button>
-        <button type="button" class="btn btn-danger" (click)="FinishConfrimRequest()">Si</button>
+        <button type="button" class="btn btn-info" (click)="FinishConfrimRequest()">Sí</button>
     </div>
   </ng-template>
 

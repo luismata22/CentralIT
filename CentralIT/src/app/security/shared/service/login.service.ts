@@ -7,6 +7,7 @@ import { Authenticate } from 'src/app/models/security/authenticate';
 import { LoginModel } from 'src/app/models/security/login';
 import { Tokens } from 'src/app/models/security/tokens';
 import { environment } from 'src/environments/environment';
+import { SecurityService } from './security.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class LoginService {
   private readonly ACCESS_STATE = '_ACCESS_STATE';
   private loggedUser: string = "";
 
-  constructor(public httpClient: HttpClient) { }
+  constructor(public httpClient: HttpClient,
+    private securityService: SecurityService) { }
 
   get rememberMe() {
     return localStorage.getItem(this.REMEMBER_ME) === 'true' ? true : false;
@@ -62,6 +64,7 @@ export class LoginService {
               rememberMe: credentials.rememberMe
             };
           this.doLogin(credentials.email, {...data});
+          this.getAccessbyUser(tokens.id);
           return of(true);
         })
         , catchError((error) => {
@@ -127,4 +130,9 @@ export class LoginService {
     localStorage.setItem(this.USER_STATE, jwt);
   }
 
+  getAccessbyUser(userId: number){
+    this.securityService.getAccessPromise(userId).then(accesses => {
+     this.securityService.sendToStorage(accesses);
+  });
+  }
 }

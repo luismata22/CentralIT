@@ -49,8 +49,6 @@ export class FullComponent implements OnInit {
     }
     this.defaultSidebar = this.sidebartype;
     this.fullName = this._loginService.entityName;
-    //this.userId = Number(this._loginService.idUser);
-    this.getAccessbyUser();
     this.getProfileImage();
     this.handleSidebar();
   }
@@ -86,12 +84,6 @@ export class FullComponent implements OnInit {
   onLogout(){
     this._loginService.removeUserStateFromStorage();
     window.location.replace('');
-  }
-
-  getAccessbyUser(){
-    this._securityService.getAccessPromise(this.userId).then(accesses => {
-     this._securityService.sendToStorage(accesses);
-  });
   }
 
   getProfileImage(){
