@@ -31,6 +31,7 @@ export class AddUserComponent implements OnInit {
   selectedPosition = [] as any;
   dropdownSettings = {};
   invalidemail: boolean = false;
+  confirmationPassword: string = "";
 
   constructor(private router: Router,
     private actRoute: ActivatedRoute,
@@ -75,7 +76,7 @@ export class AddUserComponent implements OnInit {
     this.submitted = true;
     if (!this.invalidemail && this._user.identityCard.trim() != "" && this._user.firstName.trim() != "" && this._user.firstLastName.trim() != "" && 
     this._user.departments.idDepartment > 0 && this._user.positionDepartmentId > 0 && this._user.mainPhone.trim() != "" &&
-    this._user.email.trim() != "" && this._user.password.trim() != "" && this._user.password.length >= 6) {
+    this._user.email.trim() != "" && this._user.password.trim() != "" && this._user.password.length >= 6 && this._user.password.trim() == this.confirmationPassword.trim()) {
       this._user.entityTypeId = 2;
       this._user.departmentId = parseInt(this._user.departmentId.toString())
       this._user.positionDepartmentId = parseInt(this._user.positionDepartmentId.toString())

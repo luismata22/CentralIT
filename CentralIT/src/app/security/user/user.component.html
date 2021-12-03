@@ -204,6 +204,12 @@
         <small class="text-danger" *ngIf="submittedPassword && _userChangePassword.password.length < 6 ">La contraseña
             debe poseer al menos 6 carácteres</small>
       </div>
+      <div class="col-md-12">
+        <label>Confirme contraseña <span class="text-danger">*</span></label>
+        <input type="password" class="form-control" [(ngModel)]="confirmationPassword">
+        <small class="text-danger" *ngIf="submittedPassword && confirmationPassword.trim() == ''">La confirmación es requerida</small>
+        <small class="text-danger" *ngIf="submittedPassword && _userChangePassword.password.trim() != confirmationPassword.trim()">La nueva contraseña no es igual a la confirmación</small>
+      </div>
     </div>
   </div>
   <div class="modal-footer">

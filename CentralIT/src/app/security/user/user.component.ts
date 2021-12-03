@@ -44,6 +44,7 @@ export class UserComponent implements OnInit {
   page = 1;
   pageSize = 5;
   showFilters: boolean = false;
+  confirmationPassword: string = "";
 
 
   constructor(private router: Router,
@@ -149,7 +150,7 @@ export class UserComponent implements OnInit {
 
   saveNewPassword(){
     this.submittedPassword = true;
-    if (this._userChangePassword.password != "" && this._userChangePassword.password.length >= 6) {
+    if (this._userChangePassword.password != "" && this._userChangePassword.password.length >= 6 && this._userChangePassword.password.trim() == this.confirmationPassword.trim()) {
       this.userService.postNewPassWord(this._userChangePassword).subscribe((data: number) => {
         if(data > 0) {
           this.toastrservice.success("Se ha guardado exitosamente", "Guardado");
